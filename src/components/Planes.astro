@@ -144,7 +144,7 @@ const WA = (plan: string) => {
 
     <!-- Línea B: Crecimiento -->
     <div>
-      <p class="reveal text-center text-sm font-semibold text-cta/90 uppercase tracking-widest mb-6">
+      <p class="reveal text-center text-sm font-semibold text-accent/90 uppercase tracking-widest mb-6">
         Para crecer · Marketing &amp; Pauta
       </p>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
@@ -158,7 +158,7 @@ const WA = (plan: string) => {
             style={p.destacado ? "" : "box-shadow: var(--shadow-card);"}
           >
             {p.destacado && (
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-mint text-dark text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full whitespace-nowrap">
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-lime text-dark text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full whitespace-nowrap">
                 Recomendado
               </span>
             )}
@@ -167,7 +167,7 @@ const WA = (plan: string) => {
             <ul class="flex flex-col gap-2.5 mb-6 list-none p-0 m-0 flex-1">
               {p.features.map((f) => (
                 <li class={`flex items-start gap-2 text-sm ${p.destacado ? "text-white/80" : "text-body"}`}>
-                  <svg class={`w-4 h-4 shrink-0 mt-0.5 ${p.destacado ? "text-mint" : "text-accent"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                  <svg class={`w-4 h-4 shrink-0 mt-0.5 ${p.destacado ? "text-lime" : "text-accent"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
                   <span>{f}</span>
                 </li>
               ))}
@@ -177,7 +177,7 @@ const WA = (plan: string) => {
               target="_blank"
               rel="noopener noreferrer"
               class={`mt-auto inline-flex items-center justify-center gap-2 font-semibold text-sm px-4 py-3 rounded-xl transition-all duration-200 ${
-                p.destacado ? "bg-mint hover:opacity-90 text-dark" : "bg-accent hover:bg-accent-dark text-white"
+                p.destacado ? "bg-lime hover:opacity-90 text-dark" : "bg-accent hover:bg-accent-dark text-white"
               }`}
             >
               Cotizar
