@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title       = "Eskala Estudio | Estudio de Marketing Digital CDMX",
+  description = "Estudio de marketing digital en Ciudad de México. Publicidad en Google, Meta y TikTok, contenido de video y páginas web para restaurantes, comercios locales y clínicas. No vendemos likes, vendemos clientes.",
+  ogImage     = "/images/og-image.jpg",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://markethigh.mx");
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0F1B2D" />
+
+    <!-- SEO primario -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:locale"      content="es_MX" />
+    <meta property="og:site_name"   content="Eskala Estudio" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+
+    <!-- Favicon (placeholder SVG) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Eskala Estudio",
+      "description": description,
+      "url": "https://markethigh.mx",
+      "telephone": "[TELEFONO]",
+      "email": "[EMAIL]",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ciudad de México",
+        "addressRegion": "CDMX",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "19.4326",
+        "longitude": "-99.1332"
+      },
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "priceRange": "$$",
+      "sameAs": [
+        "[URL_INSTAGRAM]",
+        "[URL_LINKEDIN]"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Ciudad de México"
+      },
+      "knowsAbout": [
+        "Marketing Digital",
+        "Publicidad en Google Ads",
+        "Publicidad en Meta Ads",
+        "TikTok Ads",
+        "Diseño Web",
+        "Producción de Video",
+        "Marketing para Restaurantes CDMX",
+        "Marketing para Clínicas CDMX"
+      ]
+    })} />
+  </head>
+
+  <body class="bg-white text-dark">
+    <slot />
+
+    <!-- Script: animaciones reveal al hacer scroll -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

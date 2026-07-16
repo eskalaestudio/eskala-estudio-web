@@ -1,0 +1,134 @@
+---
+const links = [
+  { label: "Servicios",       href: "#servicios"  },
+  { label: "Cómo trabajamos", href: "#proceso"    },
+  { label: "Planes",          href: "#planes"     },
+  { label: "Nosotros",        href: "#nosotros"   },
+  { label: "Contacto",        href: "#contacto"   },
+];
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="font-display font-extrabold text-xl tracking-tight text-dark" aria-label="Eskala Estudio inicio">
+      Eskala<span class="text-accent"> Estudio</span>
+    </a>
+
+    <!-- Links desktop -->
+    <ul class="hidden md:flex items-center gap-6 list-none m-0 p-0">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="text-sm font-medium text-body hover:text-accent transition-colors duration-200"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA desktop -->
+    <a
+      href="#contacto"
+      class="hidden md:inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
+    >
+      Hablemos
+    </a>
+
+    <!-- Hamburguesa mobile -->
+    <button
+      id="menu-btn"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      class="md:hidden flex flex-col justify-center gap-1.5 w-8 h-8 p-1"
+    >
+      <span class="block h-0.5 bg-dark rounded transition-all duration-300 origin-center" id="bar1"></span>
+      <span class="block h-0.5 bg-dark rounded transition-all duration-300"              id="bar2"></span>
+      <span class="block h-0.5 bg-dark rounded transition-all duration-300 origin-center" id="bar3"></span>
+    </button>
+  </nav>
+
+  <!-- Menú mobile desplegable -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-white border-t border-border shadow-lg"
+  >
+    <ul class="flex flex-col list-none m-0 p-0 py-4">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="mobile-link block px-6 py-3 text-sm font-medium text-body hover:text-accent hover:bg-accent-light transition-colors duration-200"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="px-6 pt-3">
+        <a
+          href="#contacto"
+          class="mobile-link block text-center bg-accent hover:bg-accent-dark text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors duration-200"
+        >
+          Hablemos
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const navbar    = document.getElementById("navbar")!;
+  const menuBtn   = document.getElementById("menu-btn")!;
+  const mobileMenu = document.getElementById("mobile-menu")!;
+  const bar1      = document.getElementById("bar1")!;
+  const bar2      = document.getElementById("bar2")!;
+  const bar3      = document.getElementById("bar3")!;
+
+  /* Fondo al hacer scroll */
+  function updateNavbar() {
+    if (window.scrollY > 20) {
+      navbar.classList.add("bg-white/95", "backdrop-blur-sm", "shadow-sm");
+    } else {
+      navbar.classList.remove("bg-white/95", "backdrop-blur-sm", "shadow-sm");
+    }
+  }
+  window.addEventListener("scroll", updateNavbar, { passive: true });
+  updateNavbar();
+
+  /* Toggle menú mobile */
+  let open = false;
+  menuBtn.addEventListener("click", () => {
+    open = !open;
+    menuBtn.setAttribute("aria-expanded", String(open));
+    mobileMenu.classList.toggle("hidden", !open);
+
+    /* Animación hamburguesa → X */
+    if (open) {
+      bar1.style.transform = "translateY(8px) rotate(45deg)";
+      bar2.style.opacity   = "0";
+      bar3.style.transform = "translateY(-8px) rotate(-45deg)";
+    } else {
+      bar1.style.transform = "";
+      bar2.style.opacity   = "1";
+      bar3.style.transform = "";
+    }
+  });
+
+  /* Cerrar menú al hacer clic en un link */
+  document.querySelectorAll(".mobile-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      open = false;
+      menuBtn.setAttribute("aria-expanded", "false");
+      mobileMenu.classList.add("hidden");
+      bar1.style.transform = "";
+      bar2.style.opacity   = "1";
+      bar3.style.transform = "";
+    });
+  });
+</script>

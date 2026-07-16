@@ -1,0 +1,113 @@
+---
+const partners = [
+  {
+    placeholder: "SOCIO_1",
+    role:        "[ROL_SOCIO_1 — ej. Estrategia y pauta digital]",
+    bio:         "[Escribe 2-3 líneas sobre el Socio 1: su trayectoria, especialidad o por qué es bueno en lo que hace. Ej: 'Llevo 8 años optimizando campañas de pago en LATAM. He gestionado más de $X millones en presupuesto publicitario para marcas de retail, salud y food service.']",
+    photo:       "/images/socio1.webp",
+    linkedin:    "[URL_LINKEDIN_SOCIO_1]",
+  },
+  {
+    placeholder: "SOCIO_2",
+    role:        "[ROL_SOCIO_2 — ej. Contenido, video y web]",
+    bio:         "[Escribe 2-3 líneas sobre el Socio 2. Ej: 'Dirijo producción de contenido y desarrollo web. Creo activos digitales que convierten visitas en ventas — desde el primer scroll hasta el botón de compra.']",
+    photo:       "/images/socio2.webp",
+    linkedin:    "[URL_LINKEDIN_SOCIO_2]",
+  },
+];
+
+const values = [
+  { emoji: "📐", label: "Claridad",    desc: "Sin tecnicismos. Te explicamos qué hacemos, por qué y cuánto cuesta." },
+  { emoji: "📊", label: "Medición",    desc: "Cada peso invertido tiene una métrica asociada. Sin excusas, sin humo." },
+  { emoji: "🎯", label: "Resultados",  desc: "No somos una agencia de servicios: somos tus socios de crecimiento." },
+  { emoji: "⚡", label: "Agilidad",    desc: "Dos socios, cero burocracia. Decisiones rápidas, ejecución inmediata." },
+];
+---
+
+<section
+  id="nosotros"
+  class="section-pad bg-white"
+  aria-labelledby="nosotros-titulo"
+>
+  <div class="max-w-6xl mx-auto px-5">
+
+    <!-- Encabezado -->
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="reveal inline-flex items-center gap-2 text-accent text-sm font-semibold tracking-widest uppercase mb-3">
+        <span class="w-5 h-px bg-accent"></span>
+        Nosotros
+        <span class="w-5 h-px bg-accent"></span>
+      </p>
+      <h2 id="nosotros-titulo" class="reveal delay-100 text-dark font-display text-3xl md:text-4xl font-extrabold mb-4">
+        Dos personas, una obsesión:<br class="hidden md:block" /> que tu negocio crezca
+      </h2>
+      <p class="reveal delay-200 text-body text-lg">
+        Somos un estudio pequeño a propósito. Sin capas de ejecutivos ni promesas vacías —
+        las dos personas que te atienden son las mismas que ejecutan tu estrategia.
+      </p>
+    </div>
+
+    <!-- Tarjetas de socios -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-3xl mx-auto">
+      {partners.map((p, i) => (
+        <article class={`reveal delay-${(i + 1) * 100} bg-surface rounded-2xl p-8 border border-border flex flex-col items-center text-center`}>
+
+          <!-- Foto placeholder -->
+          <div class="w-24 h-24 rounded-full bg-accent-light border-4 border-white shadow-md overflow-hidden mb-4 flex items-center justify-center">
+            <img
+              src={p.photo}
+              alt={`Foto de ${p.placeholder}`}
+              loading="lazy"
+              width="96"
+              height="96"
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'"
+            />
+            <!-- Fallback inicial -->
+            <span class="text-2xl font-extrabold text-accent font-display select-none">
+              {p.placeholder[0]}
+            </span>
+          </div>
+
+          <!-- Nombre y rol -->
+          <h3 class="font-display font-extrabold text-dark text-xl mb-1">[{p.placeholder}]</h3>
+          <p class="text-accent text-sm font-semibold mb-4">{p.role}</p>
+
+          <!-- Bio -->
+          <p class="text-body text-sm leading-relaxed mb-5">{p.bio}</p>
+
+          <!-- LinkedIn -->
+          <a
+            href={p.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:underline"
+            aria-label={`LinkedIn de ${p.placeholder}`}
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            Ver perfil
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <!-- Valores -->
+    <div class="reveal bg-dark rounded-2xl p-8 md:p-10">
+      <h3 class="font-display font-extrabold text-white text-2xl text-center mb-8">
+        Lo que nos define
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map((v, i) => (
+          <div class={`reveal delay-${(i + 1) * 100} flex flex-col items-center text-center`}>
+            <span class="text-3xl mb-3" aria-hidden="true">{v.emoji}</span>
+            <h4 class="font-display font-bold text-white text-lg mb-2">{v.label}</h4>
+            <p class="text-white/60 text-sm leading-relaxed">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,198 @@
+---
+/*
+  Sección de Planes (SIN precios — el sitio no muestra precios).
+  Dos líneas: "Web & Local" (entrada) y "Crecimiento" (premium).
+  Todos los CTA llevan a cotizar por WhatsApp.
+  Editar textos: modifica los arrays `entrada` y `crecimiento`.
+*/
+const WHATSAPP = "525618003081"; /* mismo número que en Hero.astro, ej. 525512345678 */
+
+const entrada = [
+  {
+    nombre: "Sitio Web",
+    ideal:  "Para el negocio que aún no existe en internet",
+    features: [
+      "Página web profesional",
+      "Dominio + hosting incluidos",
+      "Servicio y mantenimiento",
+      "Botón de WhatsApp y mapa",
+    ],
+    destacado: false,
+  },
+  {
+    nombre: "Local + Reseñas",
+    ideal:  "Para aparecer en Google y subir tus estrellas",
+    features: [
+      "Todo lo de Sitio Web",
+      "Google Business optimizado",
+      "Reseñas automáticas por WhatsApp",
+      "Reporte mensual de estrellas",
+    ],
+    destacado: false,
+  },
+  {
+    nombre: "Redes Local",
+    ideal:  "Para estar activo en redes sin invertir tu tiempo",
+    features: [
+      "Todo lo de Local + Reseñas",
+      "Manejo de 2 redes sociales",
+      "Contenido gráfico de marca",
+      "Respuesta a mensajes",
+    ],
+    destacado: false,
+  },
+];
+
+const crecimiento = [
+  {
+    nombre: "Arranque",
+    ideal:  "Para empezar a crecer con contenido y pauta",
+    features: [
+      "Reels, posts y stories cada semana",
+      "Campañas de alcance y conversión",
+      "Community management",
+      "Medición de resultados desde el día 1",
+    ],
+    destacado: false,
+  },
+  {
+    nombre: "Crecimiento",
+    ideal:  "Producción seria y embudo completo",
+    features: [
+      "Más contenido + stories a diario",
+      "Campañas full-funnel + remarketing",
+      "1 sesión de foto y video al mes",
+      "Optimización y reportes constantes",
+    ],
+    destacado: true,
+  },
+  {
+    nombre: "Dominio",
+    ideal:  "Para dominar tu categoría en digital",
+    features: [
+      "Máxima producción + colaboraciones",
+      "2 sesiones de foto y video al mes",
+      "Embudo completo + Google Ads local",
+      "Dashboard de resultados en vivo",
+    ],
+    destacado: false,
+  },
+];
+
+const WA = (plan: string) => {
+  const msg = encodeURIComponent(`Hola Eskala Estudio, quiero cotizar el plan ${plan} para mi negocio.`);
+  return `https://wa.me/${WHATSAPP}?text=${msg}`;
+};
+---
+
+<section
+  id="planes"
+  class="section-pad bg-white"
+  aria-labelledby="planes-titulo"
+>
+  <div class="max-w-6xl mx-auto px-5">
+
+    <!-- Encabezado -->
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="reveal inline-flex items-center gap-2 text-accent text-sm font-semibold tracking-widest uppercase mb-3">
+        <span class="w-5 h-px bg-accent"></span>
+        Planes a la medida
+        <span class="w-5 h-px bg-accent"></span>
+      </p>
+      <h2 id="planes-titulo" class="reveal delay-100 text-dark font-display text-3xl md:text-4xl font-extrabold mb-4">
+        Empieza donde estás, crece hasta donde quieras
+      </h2>
+      <p class="reveal delay-200 text-body text-lg">
+        Desde tu primera página web hasta campañas que llenan tu negocio.
+        Armamos el plan a la medida de tu momento. Cotiza sin compromiso.
+      </p>
+    </div>
+
+    <!-- Línea A: Web & Local -->
+    <div class="mb-14">
+      <p class="reveal text-center text-sm font-semibold text-accent/80 uppercase tracking-widest mb-6">
+        Para empezar · Web &amp; Local
+      </p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+        {entrada.map((p, i) => (
+          <article
+            class={`reveal delay-${(i + 1) * 100} flex flex-col rounded-2xl p-6 border border-border bg-surface hover:border-accent/30 transition-all duration-300 hover:-translate-y-1`}
+            style="box-shadow: var(--shadow-card);"
+          >
+            <h3 class="font-display font-bold text-lg text-dark mb-1">{p.nombre}</h3>
+            <p class="text-xs leading-snug text-muted mb-5 min-h-[2.5rem]">{p.ideal}</p>
+            <ul class="flex flex-col gap-2.5 mb-6 list-none p-0 m-0 flex-1">
+              {p.features.map((f) => (
+                <li class="flex items-start gap-2 text-sm text-body">
+                  <svg class="w-4 h-4 shrink-0 mt-0.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={WA(p.nombre)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-auto inline-flex items-center justify-center gap-2 font-semibold text-sm px-4 py-3 rounded-xl bg-accent hover:bg-accent-dark text-white transition-all duration-200"
+            >
+              Cotizar
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- Línea B: Crecimiento -->
+    <div>
+      <p class="reveal text-center text-sm font-semibold text-cta/90 uppercase tracking-widest mb-6">
+        Para crecer · Marketing &amp; Pauta
+      </p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+        {crecimiento.map((p, i) => (
+          <article
+            class={`reveal delay-${(i + 1) * 100} relative flex flex-col rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 ${
+              p.destacado
+                ? "border-accent bg-dark text-white shadow-hover"
+                : "border-border bg-surface hover:border-accent/30"
+            }`}
+            style={p.destacado ? "" : "box-shadow: var(--shadow-card);"}
+          >
+            {p.destacado && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-mint text-dark text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full whitespace-nowrap">
+                Recomendado
+              </span>
+            )}
+            <h3 class={`font-display font-bold text-lg mb-1 ${p.destacado ? "text-white" : "text-dark"}`}>{p.nombre}</h3>
+            <p class={`text-xs leading-snug mb-5 min-h-[2.5rem] ${p.destacado ? "text-white/60" : "text-muted"}`}>{p.ideal}</p>
+            <ul class="flex flex-col gap-2.5 mb-6 list-none p-0 m-0 flex-1">
+              {p.features.map((f) => (
+                <li class={`flex items-start gap-2 text-sm ${p.destacado ? "text-white/80" : "text-body"}`}>
+                  <svg class={`w-4 h-4 shrink-0 mt-0.5 ${p.destacado ? "text-mint" : "text-accent"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={WA(p.nombre)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`mt-auto inline-flex items-center justify-center gap-2 font-semibold text-sm px-4 py-3 rounded-xl transition-all duration-200 ${
+                p.destacado ? "bg-mint hover:opacity-90 text-dark" : "bg-accent hover:bg-accent-dark text-white"
+              }`}
+            >
+              Cotizar
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- Nota al pie -->
+    <p class="reveal text-center text-muted text-sm mt-10 max-w-3xl mx-auto">
+      En los planes de crecimiento, la inversión en anuncios (pauta) la pagas directo a la plataforma —
+      con transparencia total. ¿Listo para más clientes?
+      <a href="#contacto" class="text-accent font-semibold hover:underline">Cotiza tu plan</a>.
+    </p>
+
+  </div>
+</section>

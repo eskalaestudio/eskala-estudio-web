@@ -1,0 +1,99 @@
+---
+const steps = [
+  {
+    number: "01",
+    title:  "Diagnóstico",
+    desc:   "Auditamos lo que tienes hoy: tu presencia digital, la competencia, tus canales y tu ticket promedio. Identificamos exactamente dónde se están escapando tus clientes.",
+    icon:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>`,
+  },
+  {
+    number: "02",
+    title:  "Estrategia",
+    desc:   "Diseñamos un plan hecho para tu negocio: qué canales usar, cuánto invertir, qué decirle a tu cliente ideal y cómo destacar sobre tu competencia.",
+    icon:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>`,
+  },
+  {
+    number: "03",
+    title:  "Ejecución",
+    desc:   "Producimos el contenido, lanzamos las campañas y construimos los activos digitales que necesitas. Movemos piezas, tú recibes los resultados.",
+    icon:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+  },
+  {
+    number: "04",
+    title:  "Medición continua",
+    desc:   "Reportamos resultados reales en números: costo por cliente, retorno sobre inversión, conversiones. Optimizamos mes a mes para que cada peso rinda más.",
+    icon:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`,
+  },
+];
+---
+
+<section
+  id="proceso"
+  class="section-pad bg-white"
+  aria-labelledby="proceso-titulo"
+>
+  <div class="max-w-6xl mx-auto px-5">
+
+    <!-- Encabezado -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="reveal inline-flex items-center gap-2 text-accent text-sm font-semibold tracking-widest uppercase mb-3">
+        <span class="w-5 h-px bg-accent"></span>
+        Cómo trabajamos
+        <span class="w-5 h-px bg-accent"></span>
+      </p>
+      <h2 id="proceso-titulo" class="reveal delay-100 text-dark font-display text-3xl md:text-4xl font-extrabold mb-4">
+        Un proceso claro,<br class="hidden md:block" /> resultados medibles
+      </h2>
+      <p class="reveal delay-200 text-body text-lg">
+        Nada de "ya te avisamos cómo van las cosas". Cada etapa tiene entregables y métricas concretas.
+      </p>
+    </div>
+
+    <!-- Pasos -->
+    <div class="relative">
+      <!-- Línea conectora desktop -->
+      <div class="hidden lg:block absolute top-14 left-[12.5%] right-[12.5%] h-px bg-border z-0" aria-hidden="true"></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {steps.map((step, i) => (
+          <div class={`reveal delay-${(i + 1) * 100} relative flex flex-col items-center text-center`}>
+
+            <!-- Número + ícono -->
+            <div class="relative z-10 w-28 h-28 rounded-full border-2 border-border bg-white flex flex-col items-center justify-center mb-6 shadow-sm">
+              <span class="text-xs font-bold text-accent/60 tracking-widest mb-1">{step.number}</span>
+              <div class="w-8 h-8 text-accent [&_svg]:w-full [&_svg]:h-full">
+                <Fragment set:html={step.icon} />
+              </div>
+            </div>
+
+            <!-- Contenido -->
+            <h3 class="font-display font-bold text-dark text-lg mb-3">{step.title}</h3>
+            <p class="text-body text-sm leading-relaxed">{step.desc}</p>
+
+            <!-- Badge especial en paso 4 -->
+            {i === 3 && (
+              <span class="mt-4 inline-flex items-center gap-1.5 bg-accent text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Todo se mide
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA inline -->
+    <div class="reveal mt-16 text-center">
+      <a
+        href="#contacto"
+        class="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg"
+      >
+        Quiero un diagnóstico gratuito
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

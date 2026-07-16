@@ -1,0 +1,81 @@
+/* ─── Google Fonts (debe ir antes de cualquier otra regla) ─── */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap");
+
+/* ─── Tailwind v4 ─── */
+@import "tailwindcss";
+
+/* ─── Tema: tokens de diseño ─── */
+@theme {
+  /* Paleta principal — Eskala Estudio (navy + verde) */
+  --color-accent:        #047857;  /* verde profundo: texto sobre claro y botones con texto blanco (AA) */
+  --color-accent-dark:   #065F46;
+  --color-accent-light:  #E7FBF3;  /* wash menta claro */
+  --color-mint:          #2EE6A5;  /* verde menta brillante: acentos sobre navy */
+  --color-cta:           #047857;
+  --color-cta-dark:      #065F46;
+
+  /* Neutros */
+  --color-dark:          #0F1B2D;  /* navy */
+  --color-body:          #3A4657;
+  --color-muted:         #6E7A8A;
+  --color-surface:       #F1FAF6;
+  --color-border:        #DDE7E2;
+
+  /* Tipografía */
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body:    "Inter", sans-serif;
+
+  /* Sombras */
+  --shadow-card:  0 4px 24px rgba(15, 27, 45, 0.08);
+  --shadow-hover: 0 8px 40px rgba(4, 120, 87, 0.20);
+}
+
+/* ─── Reset base ─── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark);
+  background: #fff;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+}
+
+/* ─── Animaciones de scroll (fade-in) ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+}
+.reveal.visible {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+
+/* ─── Utilidades globales ─── */
+.section-pad {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .section-pad {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
