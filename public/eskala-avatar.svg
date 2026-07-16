@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
   <title>Eskala Estudio — avatar</title>
-  <!-- Tile de fondo -->
-  <rect x="0" y="0" width="240" height="240" rx="48" fill="#17153A"/>
-  <!-- Sombra dura desplazada -->
-  <rect x="78" y="66" width="105" height="30" rx="5" fill="#5B54EC"/>
-  <rect x="78" y="108" width="75" height="30" rx="5" fill="#5B54EC"/>
-  <rect x="78" y="150" width="105" height="30" rx="5" fill="#5B54EC"/>
-  <!-- Escalones principales -->
-  <rect x="66" y="54" width="105" height="30" rx="5" fill="#D8FE54"/>
-  <rect x="66" y="96" width="75" height="30" rx="5" fill="#D8FE54"/>
-  <rect x="66" y="138" width="105" height="30" rx="5" fill="#D8FE54"/>
+  <!-- Tile de fondo (navy) -->
+  <rect x="0" y="0" width="240" height="240" rx="48" fill="#0F1B2D"/>
+  <!-- Sombra dura desplazada (verde profundo) -->
+  <rect x="78" y="66" width="105" height="30" rx="5" fill="#0B7357"/>
+  <rect x="78" y="108" width="75" height="30" rx="5" fill="#0B7357"/>
+  <rect x="78" y="150" width="105" height="30" rx="5" fill="#0B7357"/>
+  <!-- Escalones principales (verde menta) -->
+  <rect x="66" y="54" width="105" height="30" rx="5" fill="#2EE6A5"/>
+  <rect x="66" y="96" width="75" height="30" rx="5" fill="#2EE6A5"/>
+  <rect x="66" y="138" width="105" height="30" rx="5" fill="#2EE6A5"/>
 </svg>

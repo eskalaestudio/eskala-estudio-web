@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
   <title>Eskala Estudio — monograma</title>
-  <!-- Sombra dura desplazada -->
-  <rect x="28" y="26" width="70" height="20" rx="3" fill="#5B54EC"/>
-  <rect x="28" y="54" width="50" height="20" rx="3" fill="#5B54EC"/>
-  <rect x="28" y="82" width="70" height="20" rx="3" fill="#5B54EC"/>
-  <!-- Escalones principales -->
-  <rect x="20" y="18" width="70" height="20" rx="3" fill="#D8FE54"/>
-  <rect x="20" y="46" width="50" height="20" rx="3" fill="#D8FE54"/>
-  <rect x="20" y="74" width="70" height="20" rx="3" fill="#D8FE54"/>
+  <!-- Sombra dura desplazada (verde profundo) -->
+  <rect x="28" y="26" width="70" height="20" rx="3" fill="#0B7357"/>
+  <rect x="28" y="54" width="50" height="20" rx="3" fill="#0B7357"/>
+  <rect x="28" y="82" width="70" height="20" rx="3" fill="#0B7357"/>
+  <!-- Escalones principales (verde menta) -->
+  <rect x="20" y="18" width="70" height="20" rx="3" fill="#2EE6A5"/>
+  <rect x="20" y="46" width="50" height="20" rx="3" fill="#2EE6A5"/>
+  <rect x="20" y="74" width="70" height="20" rx="3" fill="#2EE6A5"/>
 </svg>
