@@ -1,0 +1,241 @@
+---
+import BaseLayout  from '../layouts/BaseLayout.astro';
+import Navbar      from '../components/Navbar.astro';
+import Footer      from '../components/Footer.astro';
+import WhatsAppFAB from '../components/WhatsAppFAB.astro';
+import { planes } from '../data/planes';
+
+const WHATSAPP = "525618003081";
+
+// info de planes para el script del cliente (slug -> datos)
+const planInfo = Object.fromEntries(
+  planes.map((p) => [p.slug, { nombre: p.nombre, tagline: p.tagline, linea: p.lineaLabel }])
+);
+// objetivo -> plan recomendado
+const planMap = {
+  existir: "sitio-web",
+  reputacion: "local-resenas",
+  redes: "redes-local",
+  publicidad: "arranque",
+  crecer: "crecimiento",
+  dominar: "dominio",
+};
+
+const inputCls = "w-full px-4 py-3 rounded-lg border border-border bg-surface text-dark text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition-colors";
+---
+
+<BaseLayout
+  title="Mini-auditoría gratis — Eskala Estudio"
+  description="Responde unas preguntas y descubre en 1 minuto qué plan de marketing necesita tu negocio. Gratis y sin compromiso."
+>
+  <Navbar />
+
+  <main>
+    <!-- Header -->
+    <section class="relative bg-dark text-white pt-28 pb-14 md:pt-32 md:pb-16 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-dark via-[#16273f] to-dark" aria-hidden="true"></div>
+      <div class="relative max-w-3xl mx-auto px-5 text-center">
+        <p class="text-mint text-sm font-semibold tracking-widest uppercase mb-4">Mini-auditoría gratis</p>
+        <h1 class="font-display text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Descubre tu plan ideal en 1 minuto</h1>
+        <p class="text-white/70 text-lg max-w-xl mx-auto">Contéstanos unas preguntas rápidas y te recomendamos el plan que tu negocio necesita hoy. Sin costo y sin compromiso.</p>
+      </div>
+    </section>
+
+    <!-- Formulario -->
+    <section class="section-pad bg-surface">
+      <div class="max-w-2xl mx-auto px-5">
+        <form id="diag-form" novalidate class="bg-white rounded-2xl p-6 md:p-8 border border-border" style="box-shadow: var(--shadow-card);">
+
+          <!-- 1. Tus datos -->
+          <h2 class="font-display text-xl font-extrabold text-dark mb-1">1. Cuéntanos de ti</h2>
+          <p class="text-body text-sm mb-5">Para poder contactarte con tu recomendación.</p>
+          <div class="grid gap-4 sm:grid-cols-2 mb-4">
+            <div>
+              <label for="d-nombre" class="block text-sm font-semibold text-dark mb-1.5">Tu nombre *</label>
+              <input id="d-nombre" name="nombre" type="text" required placeholder="Ej. Javier" class={inputCls} />
+            </div>
+            <div>
+              <label for="d-empresa" class="block text-sm font-semibold text-dark mb-1.5">Tu negocio *</label>
+              <input id="d-empresa" name="empresa" type="text" required placeholder="Nombre de tu negocio" class={inputCls} />
+            </div>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2 mb-4">
+            <div>
+              <label for="d-giro" class="block text-sm font-semibold text-dark mb-1.5">¿A qué se dedica? *</label>
+              <input id="d-giro" name="giro" type="text" required placeholder="Ej. restaurante, clínica, imprenta…" class={inputCls} />
+            </div>
+            <div>
+              <label for="d-whatsapp" class="block text-sm font-semibold text-dark mb-1.5">Tu WhatsApp *</label>
+              <input id="d-whatsapp" name="whatsapp" type="tel" required placeholder="55 1234 5678" class={inputCls} />
+            </div>
+          </div>
+          <div class="mb-8">
+            <label for="d-correo" class="block text-sm font-semibold text-dark mb-1.5">Correo <span class="text-muted font-normal">(opcional)</span></label>
+            <input id="d-correo" name="correo" type="email" placeholder="tucorreo@ejemplo.com" class={inputCls} />
+          </div>
+
+          <!-- 2. Mini-auditoría -->
+          <h2 class="font-display text-xl font-extrabold text-dark mb-1">2. Mini-auditoría</h2>
+          <p class="text-body text-sm mb-5">6 preguntas rápidas sobre tu presencia digital.</p>
+
+          <div class="grid gap-5">
+            <div>
+              <label for="q-web" class="block text-sm font-semibold text-dark mb-1.5">¿Tienes página web? *</label>
+              <select id="q-web" name="web" required class={inputCls}>
+                <option value="" disabled selected>Elige una opción…</option>
+                <option value="no">No tengo</option>
+                <option value="mala">Sí, pero está vieja o abandonada</option>
+                <option value="buena">Sí, y funciona bien</option>
+              </select>
+            </div>
+            <div>
+              <label for="q-google" class="block text-sm font-semibold text-dark mb-1.5">¿Cómo apareces en Google (Maps y reseñas)? *</label>
+              <select id="q-google" name="google" required class={inputCls}>
+                <option value="" disabled selected>Elige una opción…</option>
+                <option value="no">No aparezco / casi sin reseñas</option>
+                <option value="pocas">Aparezco, pero con pocas o malas reseñas</option>
+                <option value="bien">Bien, con buenas reseñas</option>
+              </select>
+            </div>
+            <div>
+              <label for="q-redes" class="block text-sm font-semibold text-dark mb-1.5">¿Tus redes sociales están activas? *</label>
+              <select id="q-redes" name="redes" required class={inputCls}>
+                <option value="" disabled selected>Elige una opción…</option>
+                <option value="no">No tengo / están abandonadas</option>
+                <option value="aveces">Publico de vez en cuando</option>
+                <option value="activas">Activas y consistentes</option>
+              </select>
+            </div>
+            <div>
+              <label for="q-ads" class="block text-sm font-semibold text-dark mb-1.5">¿Inviertes en publicidad pagada (Google/Meta Ads)? *</label>
+              <select id="q-ads" name="ads" required class={inputCls}>
+                <option value="" disabled selected>Elige una opción…</option>
+                <option value="no">No, nunca</option>
+                <option value="poco">Un poco / lo intenté</option>
+                <option value="si">Sí, regularmente</option>
+              </select>
+            </div>
+            <div>
+              <label for="q-objetivo" class="block text-sm font-semibold text-dark mb-1.5">¿Cuál es tu objetivo principal ahora? *</label>
+              <select id="q-objetivo" name="objetivo" required class={inputCls}>
+                <option value="" disabled selected>Elige una opción…</option>
+                <option value="existir">Existir en internet / que me encuentren</option>
+                <option value="reputacion">Aparecer primero en mi zona y subir reseñas</option>
+                <option value="redes">Estar activo en redes sin invertir mi tiempo</option>
+                <option value="publicidad">Atraer más clientes con publicidad</option>
+                <option value="crecer">Crecer en serio (contenido + campañas)</option>
+                <option value="dominar">Dominar mi categoría / ser el referente</option>
+              </select>
+            </div>
+            <div>
+              <label for="q-presupuesto" class="block text-sm font-semibold text-dark mb-1.5">¿Presupuesto mensual para marketing? *</label>
+              <select id="q-presupuesto" name="presupuesto" required class={inputCls}>
+                <option value="" disabled selected>Elige una opción…</option>
+                <option value="basico">Básico — quiero empezar sencillo</option>
+                <option value="medio">Medio</option>
+                <option value="alto">Alto — quiero invertir fuerte</option>
+              </select>
+            </div>
+          </div>
+
+          <p id="diag-error" class="hidden text-sm text-cta font-semibold mt-5"></p>
+
+          <button type="submit" class="w-full mt-7 inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-bold text-base px-6 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5">
+            Ver mi plan recomendado
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </button>
+        </form>
+
+        <!-- Resultado -->
+        <div id="diag-result" class="hidden mt-8 scroll-mt-24">
+          <div class="bg-dark text-white rounded-2xl p-7 md:p-9 text-center" style="box-shadow: var(--shadow-hover);">
+            <p class="text-mint text-sm font-semibold tracking-widest uppercase mb-3">Tu plan recomendado</p>
+            <h3 id="rec-nombre" class="font-display text-3xl md:text-4xl font-extrabold mb-2"></h3>
+            <p id="rec-tagline" class="text-white/70 text-lg mb-5"></p>
+            <a id="rec-link" href="#" class="inline-flex items-center gap-1.5 text-mint font-semibold text-sm hover:underline mb-8">
+              Ver a detalle este plan
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </a>
+
+            <div class="max-w-xs mx-auto mb-8 text-left">
+              <label for="rec-cambiar" class="block text-xs font-semibold text-white/60 uppercase tracking-wide mb-1.5">¿Prefieres otro plan?</label>
+              <select id="rec-cambiar" class="w-full px-4 py-3 rounded-lg border border-white/20 bg-white/5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-mint/40">
+                {planes.map((p) => (
+                  <option value={p.slug}>{p.nombre} · {p.lineaLabel}</option>
+                ))}
+              </select>
+            </div>
+
+            <a id="rec-wa" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 bg-mint hover:opacity-90 text-dark font-extrabold text-base px-8 py-4 rounded-full transition-all duration-200 hover:-translate-y-0.5">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+              Contáctanos por WhatsApp
+            </a>
+            <p class="text-white/40 text-xs mt-4">El precio lo vemos juntos, sin compromiso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFAB />
+</BaseLayout>
+
+<script define:vars={{ planInfo, planMap, WHATSAPP }}>
+  const form = document.getElementById("diag-form");
+  const result = document.getElementById("diag-result");
+  const errEl = document.getElementById("diag-error");
+  const cambiar = document.getElementById("rec-cambiar");
+  let datos = {};
+
+  function recomienda(a) {
+    let slug = planMap[a.objetivo] || "sitio-web";
+    // Ajuste por presupuesto en la línea premium
+    if (slug === "arranque" && a.presupuesto === "alto") slug = "crecimiento";
+    if (slug === "dominio" && a.presupuesto === "basico") slug = "crecimiento";
+    return slug;
+  }
+
+  function pinta(slug) {
+    const info = planInfo[slug];
+    if (!info) return;
+    document.getElementById("rec-nombre").textContent = info.nombre;
+    document.getElementById("rec-tagline").textContent = info.tagline;
+    document.getElementById("rec-link").href = "/planes/" + slug;
+    if (cambiar) cambiar.value = slug;
+
+    const msg =
+      `Hola Eskala Estudio 👋\n\n` +
+      `Soy *${datos.nombre}* de *${datos.empresa}* (${datos.giro}).\n` +
+      `Hice la mini-auditoría y me recomendaron el plan *${info.nombre}*.\n` +
+      `📱 Mi WhatsApp: ${datos.whatsapp}` +
+      (datos.correo ? `\n✉️ Correo: ${datos.correo}` : "") +
+      `\n\n¡Quiero más información!`;
+    document.getElementById("rec-wa").href =
+      `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  }
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const a = Object.fromEntries(fd.entries());
+    // Validación simple
+    const req = ["nombre", "empresa", "giro", "whatsapp", "web", "google", "redes", "ads", "objetivo", "presupuesto"];
+    const falta = req.some((k) => !a[k]);
+    if (falta) {
+      errEl.textContent = "Por favor completa todos los campos con * antes de continuar.";
+      errEl.classList.remove("hidden");
+      return;
+    }
+    errEl.classList.add("hidden");
+    datos = a;
+
+    // TODO Fase 3: guardar el lead en Supabase aquí (saveLead(datos, slug))
+    const slug = recomienda(a);
+    pinta(slug);
+    result.classList.remove("hidden");
+    result.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  cambiar?.addEventListener("change", () => pinta(cambiar.value));
+</script>
