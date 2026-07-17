@@ -68,6 +68,16 @@ h1, h2, h3, h4, h5 {
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 
+/* ─── Mascota: flotación sutil ─── */
+@keyframes mascotaFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.mascota-float { animation: mascotaFloat 3.5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .mascota-float { animation: none; }
+}
+
 /* ─── Utilidades globales ─── */
 .section-pad {
   padding-top: 5rem;
