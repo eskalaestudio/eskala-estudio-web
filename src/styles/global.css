@@ -4,6 +4,18 @@
 /* ─── Tailwind v4 ─── */
 @import "tailwindcss";
 
+/* ─── Fuente de marca: Square Kufic (latina) ───
+   Coloca el archivo de la fuente en /public/fonts/ con estos nombres.
+   Mientras no exista, cae elegantemente a la fuente display (sin romper nada). */
+@font-face {
+  font-family: "Square Kufic";
+  src: url("/fonts/square-kufic.woff2") format("woff2"),
+       url("/fonts/square-kufic.woff")  format("woff"),
+       url("/fonts/square-kufic.ttf")   format("truetype");
+  font-weight: 400 800;
+  font-display: swap;
+}
+
 /* ─── Tema: tokens de diseño ─── */
 @theme {
   /* Paleta principal — Eskala Estudio (navy + verde) */
@@ -24,6 +36,7 @@
   /* Tipografía */
   --font-display: "Plus Jakarta Sans", sans-serif;
   --font-body:    "Inter", sans-serif;
+  --font-brand:   "Square Kufic", "Plus Jakarta Sans", sans-serif; /* nombre de la marca + títulos destacados */
 
   /* Sombras */
   --shadow-card:  0 4px 24px rgba(15, 27, 45, 0.08);
@@ -48,6 +61,12 @@ body {
 h1, h2, h3, h4, h5 {
   font-family: var(--font-display);
   line-height: 1.15;
+}
+
+/* nombre de la marca + títulos que quieran el estilo Square Kufic */
+.font-brand {
+  font-family: var(--font-brand);
+  letter-spacing: 0.03em;
 }
 
 /* ─── Animaciones de scroll (fade-in) ─── */
@@ -85,7 +104,8 @@ h1, h2, h3, h4, h5 {
 }
 .eskala-name {
   display: block;
-  font-size: 0.68rem;
+  font-family: var(--font-brand);
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -112,6 +132,38 @@ h1, h2, h3, h4, h5 {
 }
 .eskala-bubble.eskala-thought.tail-left::after  { left: 26px; }
 .eskala-bubble.eskala-thought.tail-right::after { right: 26px; }
+
+/* letrero: cartel sostenido por encima (para la pose que señala arriba) */
+.eskala-letrero {
+  position: relative;
+  background: #fff;
+  border: 2px solid var(--color-accent);
+  border-radius: 16px;
+  padding: 0.85rem 1.2rem 0.95rem;
+  box-shadow: 0 12px 30px rgba(15, 27, 45, 0.18);
+  max-width: 19rem;
+  text-align: center;
+}
+/* punta que baja hacia Eskala */
+.eskala-letrero::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 11px solid transparent;
+  border-top-color: var(--color-accent);
+}
+.eskala-letrero::before {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 9px solid transparent;
+  border-top-color: #fff;
+  z-index: 1;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .eskala-float { animation: none; }

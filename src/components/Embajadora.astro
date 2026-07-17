@@ -1,11 +1,13 @@
 ---
 /*
-  Eskala — la embajadora del estudio. Personaje + globo de diálogo/pensamiento.
+  Eskala — la embajadora del estudio. Personaje + globo de diálogo/pensamiento
+  o letrero (cartel por encima) según la pose.
   Props:
    - pose: saludando | mostrando | pensando | senala
-   - texto: lo que "dice"
-   - lado: izq | der  (de qué lado está parada)
+   - texto: lo que "dice" / muestra
+   - lado: izq | der  (de qué lado está parada; solo aplica a globo)
    - tipo: dialogo | pensamiento
+   - formato: globo | letrero  (por defecto: senala -> letrero, resto -> globo)
    - ancho: clases tailwind de ancho de la figura
 */
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
   texto: string;
   lado?: "izq" | "der";
   tipo?: "dialogo" | "pensamiento";
+  formato?: "globo" | "letrero";
   ancho?: string;
 }
 const {
@@ -20,6 +23,7 @@ const {
   texto,
   lado = "izq",
   tipo = "dialogo",
+  formato = pose === "senala" ? "letrero" : "globo",
   ancho = "w-28 sm:w-36 md:w-44",
 } = Astro.props;
 
@@ -31,18 +35,25 @@ const src = {
 }[pose];
 
 const tail = lado === "izq" ? "tail-left" : "tail-right";
+const imgClass = `eskala-float ${ancho} h-auto shrink-0 select-none pointer-events-none`;
+const imgStyle = "filter: drop-shadow(0 14px 22px rgba(15,27,45,.22));";
+const alt = "Eskala, la embajadora de Eskala Estudio";
 ---
 
-<div class={`flex items-end justify-center gap-2 md:gap-4 ${lado === "der" ? "flex-row-reverse" : ""}`}>
-  <img
-    src={src}
-    alt="Eskala, la embajadora de Eskala Estudio"
-    loading="lazy"
-    class={`eskala-float ${ancho} h-auto shrink-0 select-none pointer-events-none`}
-    style="filter: drop-shadow(0 14px 22px rgba(15,27,45,.22));"
-  />
-  <div class={`eskala-bubble ${tail} ${tipo === "pensamiento" ? "eskala-thought" : ""} mb-6`}>
-    <span class="eskala-name">Eskala</span>
-    <p class="text-dark text-sm md:text-base font-medium leading-snug">{texto}</p>
+{formato === "letrero" ? (
+  <div class="flex flex-col items-center gap-2 md:gap-3">
+    <div class="eskala-letrero">
+      <span class="eskala-name">Eskala</span>
+      <p class="text-dark text-sm md:text-base font-medium leading-snug">{texto}</p>
+    </div>
+    <img src={src} alt={alt} loading="lazy" class={imgClass} style={imgStyle} />
   </div>
-</div>
+) : (
+  <div class={`flex items-center justify-center gap-2 md:gap-4 ${lado === "der" ? "flex-row-reverse" : ""}`}>
+    <img src={src} alt={alt} loading="lazy" class={imgClass} style={imgStyle} />
+    <div class={`eskala-bubble ${tail} ${tipo === "pensamiento" ? "eskala-thought" : ""}`}>
+      <span class="eskala-name">Eskala</span>
+      <p class="text-dark text-sm md:text-base font-medium leading-snug">{texto}</p>
+    </div>
+  </div>
+)}

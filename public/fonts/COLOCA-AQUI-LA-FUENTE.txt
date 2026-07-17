@@ -1,0 +1,22 @@
+FUENTE DE MARCA — Square Kufic (estilo latino)
+================================================
+
+El sitio ya está configurado para usar "Square Kufic" en el nombre "Eskala"
+(navbar, footer, nombre de la embajadora) y en los títulos que marquemos con
+la clase .font-brand.
+
+Para que se vea, coloca AQUÍ el archivo de la fuente con alguno de estos nombres
+(basta con uno; ideal woff2 por peso):
+
+    square-kufic.woff2   ← recomendado
+    square-kufic.woff
+    square-kufic.ttf
+
+IMPORTANTE:
+- Debe ser una fuente *square kufic con alfabeto LATINO* (que dibuje A-Z),
+  no la versión árabe. Ejemplos: "Kuficality", "Kufication", o la que use tu
+  diseñador. "Square Kufic" clásica solo trae glifos árabes y NO mostraría "Eskala".
+- Verifica que la licencia permita incrustarla en un sitio web (@font-face).
+
+Mientras no exista el archivo, el nombre cae elegantemente a la fuente actual
+(Plus Jakarta Sans) sin romper nada.

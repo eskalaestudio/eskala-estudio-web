@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title       = "Eskala Estudio | Estudio de Marketing Digital CDMX",
-  description = "Estudio de marketing digital en Ciudad de México. Publicidad en Google, Meta y TikTok, contenido de video y páginas web para restaurantes, comercios locales y clínicas. No vendemos likes, vendemos clientes.",
+  description = "Estudio de marketing digital en Ciudad de México. Publicidad en Google, Meta y TikTok, contenido de video y páginas web para restaurantes, comercios locales y clínicas. Convertimos tu inversión en clientes, con resultados medibles.",
   ogImage     = "/images/og-image.jpg",
 } = Astro.props;
 
@@ -90,6 +90,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://eskalaes
         "Marketing para Clínicas CDMX"
       ]
     })} />
+
+    <!-- Meta Pixel Code -->
+    <script is:inline>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '4508842099360962');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=4508842099360962&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
   </head>
 
   <body class="bg-white text-dark">

@@ -1,4 +1,5 @@
 ---
+import Embajadora from './Embajadora.astro';
 const WHATSAPP = "525618003081"; /* reemplaza por ej. 525512345678 */
 const WA_MSG   = encodeURIComponent("Hola Eskala Estudio, quiero saber cómo pueden ayudar a mi negocio.");
 const WA_URL   = `https://wa.me/${WHATSAPP}?text=${WA_MSG}`;
@@ -36,20 +37,20 @@ const WA_URL   = `https://wa.me/${WHATSAPP}?text=${WA_MSG}`;
       <!-- H1: el diferenciador -->
       <h1 class="reveal delay-100 font-display text-white leading-tight mb-6">
         <span class="block text-4xl md:text-5xl lg:text-6xl font-extrabold">
-          No vendemos likes.
+          Marketing digital
         </span>
         <span class="block text-4xl md:text-5xl lg:text-6xl font-extrabold text-mint mt-1">
-          Vendemos clientes.
+          que genera ventas.
         </span>
         <span class="block text-xl md:text-2xl font-semibold text-white/70 mt-3">
-          Y lo medimos.
+          Medible en cada etapa.
         </span>
       </h1>
 
       <!-- Subtítulo -->
       <p class="reveal delay-200 text-white/60 text-lg md:text-xl leading-relaxed mb-10 max-w-xl">
-        Llevamos marcas de restaurantes, comercios y clínicas al siguiente nivel
-        con publicidad digital que genera ventas reales — no solo aplausos en redes.
+        Estrategia, publicidad y contenido para restaurantes, comercios y clínicas.
+        Convertimos tu inversión en clientes reales, con reportes claros en cada etapa.
       </p>
 
       <!-- CTAs -->
@@ -80,25 +81,36 @@ const WA_URL   = `https://wa.me/${WHATSAPP}?text=${WA_MSG}`;
         </a>
       </div>
 
-      <!-- Social proof mínimo -->
-      <div class="reveal delay-400 flex items-center gap-6 mt-12 pt-12 border-t border-white/10">
+      <!-- Qué hacemos (señales factuales, sin métricas infladas) -->
+      <div class="reveal delay-400 flex flex-wrap items-center gap-x-6 gap-y-3 mt-12 pt-12 border-t border-white/10">
         <div class="text-center">
-          <p class="text-2xl font-extrabold text-white font-display">+50</p>
-          <p class="text-xs text-white/50 mt-0.5">negocios atendidos</p>
+          <p class="text-sm font-bold text-white">Publicidad digital</p>
+          <p class="text-xs text-white/50 mt-0.5">Google · Meta · TikTok</p>
         </div>
-        <div class="w-px h-10 bg-white/10"></div>
+        <div class="w-px h-10 bg-white/10 hidden sm:block"></div>
         <div class="text-center">
-          <p class="text-2xl font-extrabold text-white font-display">3×</p>
-          <p class="text-xs text-white/50 mt-0.5">retorno promedio</p>
+          <p class="text-sm font-bold text-white">Contenido</p>
+          <p class="text-xs text-white/50 mt-0.5">Video y diseño</p>
         </div>
-        <div class="w-px h-10 bg-white/10"></div>
+        <div class="w-px h-10 bg-white/10 hidden sm:block"></div>
         <div class="text-center">
-          <p class="text-2xl font-extrabold text-white font-display">100%</p>
-          <p class="text-xs text-white/50 mt-0.5">resultados medibles</p>
+          <p class="text-sm font-bold text-white">Páginas web</p>
+          <p class="text-xs text-white/50 mt-0.5">Sitios y landings</p>
         </div>
       </div>
 
     </div>
+  </div>
+
+  <!-- Eskala pensando (esquina, solo escritorio) -->
+  <div class="reveal delay-500 hidden lg:block absolute bottom-12 right-4 xl:right-10 z-20 max-w-md">
+    <Embajadora
+      pose="pensando"
+      lado="der"
+      tipo="pensamiento"
+      ancho="w-24 xl:w-28"
+      texto="¿Quieres generar leads? Hmmm… estás en el sitio perfecto."
+    />
   </div>
 
   <!-- Flecha scroll-down decorativa -->
