@@ -90,8 +90,8 @@
       h = canvas.height = Math.max(1, Math.floor(r.height * dpr));
     };
     const initParts = () => {
-      const count = Math.min(60, Math.floor((w * h) / (26000 * dpr)));
-      parts = Array.from({ length: Math.max(24, count) }, () => ({
+      const count = Math.min(220, Math.floor((w * h) / (7000 * dpr)));
+      parts = Array.from({ length: Math.max(110, count) }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
         vx: (Math.random() - 0.5) * 0.22 * dpr,
