@@ -1,0 +1,21 @@
+---
+/* Video de intro al principio del landing. Autoplay silenciado en loop. */
+---
+<section class="bg-dark pt-24 pb-12 md:pt-28 md:pb-16">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="rounded-2xl overflow-hidden mx-auto bg-black" style="box-shadow: var(--shadow-hover);">
+      <video
+        class="w-full h-auto block"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="/videointro-poster.jpg"
+        aria-label="Video de presentación de Eskala Estudio"
+      >
+        <source src="/videointro.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>
