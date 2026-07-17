@@ -18,7 +18,7 @@ const links = [
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2 font-display font-extrabold text-xl tracking-tight text-dark" aria-label="Eskala Estudio inicio">
       <img src="/eskala-avatar.svg" alt="" aria-hidden="true" class="w-8 h-8 rounded-lg" />
-      <span>Eskala<span class="text-accent"> Estudio</span></span>
+      <span><span class="logo-eskala">Eskala</span><span class="logo-estudio"> Estudio</span></span>
     </a>
 
     <!-- Links desktop -->
@@ -27,7 +27,7 @@ const links = [
         <li>
           <a
             href={link.href}
-            class="text-sm font-medium text-body hover:text-accent transition-colors duration-200"
+            class="nav-link text-sm font-medium transition-colors duration-200"
           >
             {link.label}
           </a>
@@ -50,9 +50,9 @@ const links = [
       aria-expanded="false"
       class="md:hidden flex flex-col justify-center gap-1.5 w-8 h-8 p-1"
     >
-      <span class="block h-0.5 bg-dark rounded transition-all duration-300 origin-center" id="bar1"></span>
-      <span class="block h-0.5 bg-dark rounded transition-all duration-300"              id="bar2"></span>
-      <span class="block h-0.5 bg-dark rounded transition-all duration-300 origin-center" id="bar3"></span>
+      <span class="nav-bar block h-0.5 rounded transition-all duration-300 origin-center" id="bar1"></span>
+      <span class="nav-bar block h-0.5 rounded transition-all duration-300"              id="bar2"></span>
+      <span class="nav-bar block h-0.5 rounded transition-all duration-300 origin-center" id="bar3"></span>
     </button>
   </nav>
 
@@ -95,9 +95,9 @@ const links = [
   /* Fondo al hacer scroll */
   function updateNavbar() {
     if (window.scrollY > 20) {
-      navbar.classList.add("bg-white/95", "backdrop-blur-sm", "shadow-sm");
+      navbar.classList.add("bg-white/95", "backdrop-blur-sm", "shadow-sm", "nav-solid");
     } else {
-      navbar.classList.remove("bg-white/95", "backdrop-blur-sm", "shadow-sm");
+      navbar.classList.remove("bg-white/95", "backdrop-blur-sm", "shadow-sm", "nav-solid");
     }
   }
   window.addEventListener("scroll", updateNavbar, { passive: true });
@@ -134,3 +134,19 @@ const links = [
     });
   });
 </script>
+
+<style>
+  /* Arriba (barra transparente sobre héroe oscuro): texto claro */
+  #navbar .logo-eskala  { color: #fff; }
+  #navbar .logo-estudio { color: var(--color-mint); }
+  #navbar .nav-link     { color: rgba(255,255,255,.82); }
+  #navbar .nav-link:hover { color: #fff; }
+  #navbar .nav-bar      { background-color: #fff; }
+
+  /* Con scroll (barra blanca): texto oscuro */
+  #navbar.nav-solid .logo-eskala  { color: var(--color-dark); }
+  #navbar.nav-solid .logo-estudio { color: var(--color-accent); }
+  #navbar.nav-solid .nav-link     { color: var(--color-body); }
+  #navbar.nav-solid .nav-link:hover { color: var(--color-accent); }
+  #navbar.nav-solid .nav-bar      { background-color: var(--color-dark); }
+</style>
