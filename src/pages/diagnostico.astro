@@ -7,6 +7,10 @@ import { planes } from '../data/planes';
 
 const WHATSAPP = "525618003081";
 
+// Supabase (la anon key es pública por diseño; la seguridad la da la política RLS insert-only)
+const SUPABASE_URL = "https://xicntznatvkvddcwyfvz.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhpY250em5hdHZrdmRkY3d5ZnZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyNDI1ODEsImV4cCI6MjA5OTgxODU4MX0.e8CU_rmmBJKSQdGfPgdwc0LrSxVLSxVlrqGhLFy8pNA";
+
 // info de planes para el script del cliente (slug -> datos)
 const planInfo = Object.fromEntries(
   planes.map((p) => [p.slug, { nombre: p.nombre, tagline: p.tagline, linea: p.lineaLabel }])
@@ -138,6 +142,11 @@ const inputCls = "w-full px-4 py-3 rounded-lg border border-border bg-surface te
             </div>
           </div>
 
+          <!-- Anti-bots (honeypot): invisible para humanos -->
+          <div aria-hidden="true" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+            <label>No llenar este campo <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
           <p id="diag-error" class="hidden text-sm text-cta font-semibold mt-5"></p>
 
           <button type="submit" class="w-full mt-7 inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-bold text-base px-6 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5">
@@ -181,7 +190,7 @@ const inputCls = "w-full px-4 py-3 rounded-lg border border-border bg-surface te
   <WhatsAppFAB />
 </BaseLayout>
 
-<script define:vars={{ planInfo, planMap, WHATSAPP }}>
+<script define:vars={{ planInfo, planMap, WHATSAPP, SUPABASE_URL, SUPABASE_ANON }}>
   const form = document.getElementById("diag-form");
   const result = document.getElementById("diag-result");
   const errEl = document.getElementById("diag-error");
@@ -229,9 +238,28 @@ const inputCls = "w-full px-4 py-3 rounded-lg border border-border bg-surface te
     }
     errEl.classList.add("hidden");
     datos = a;
-
-    // TODO Fase 3: guardar el lead en Supabase aquí (saveLead(datos, slug))
     const slug = recomienda(a);
+
+    // Guardar el lead en Supabase (honeypot anti-bots; no bloquea el flujo)
+    if (!a.website) {
+      fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON,
+          Authorization: `Bearer ${SUPABASE_ANON}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          nombre: a.nombre, empresa: a.empresa, giro: a.giro,
+          whatsapp: a.whatsapp, correo: a.correo || null,
+          web: a.web, google: a.google, redes: a.redes, ads: a.ads,
+          objetivo: a.objetivo, presupuesto: a.presupuesto,
+          plan_recomendado: slug,
+        }),
+      }).catch(() => {});
+    }
+
     pinta(slug);
     result.classList.remove("hidden");
     result.scrollIntoView({ behavior: "smooth", block: "center" });
