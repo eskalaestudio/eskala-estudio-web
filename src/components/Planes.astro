@@ -4,6 +4,7 @@
   Cada tarjeta enlaza a su landing /planes/[slug]. SIN precios (solo el gancho).
 */
 import { planesLineaA, planesLineaB } from '../data/planes';
+import Embajadora from './Embajadora.astro';
 
 const grupos = [
   { label: "Para empezar · Web & Local", planes: planesLineaA },
@@ -86,6 +87,16 @@ const grupos = [
       con transparencia total. ¿Listo para más clientes?
       <a href="#contacto" class="text-accent font-semibold hover:underline">Cotiza tu plan</a>.
     </p>
+
+    <div class="reveal mt-12">
+      <Embajadora
+        pose="senala"
+        lado="der"
+        ancho="w-24 sm:w-32 md:w-36"
+        tipo="pensamiento"
+        texto="¿No sabes cuál elegir? 🤔 Haz la mini-auditoría gratis y te digo el plan ideal para ti."
+      />
+    </div>
 
   </div>
 </section>

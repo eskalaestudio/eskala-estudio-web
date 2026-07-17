@@ -1,0 +1,48 @@
+---
+/*
+  Eskala — la embajadora del estudio. Personaje + globo de diálogo/pensamiento.
+  Props:
+   - pose: saludando | mostrando | pensando | senala
+   - texto: lo que "dice"
+   - lado: izq | der  (de qué lado está parada)
+   - tipo: dialogo | pensamiento
+   - ancho: clases tailwind de ancho de la figura
+*/
+interface Props {
+  pose?: "saludando" | "mostrando" | "pensando" | "senala";
+  texto: string;
+  lado?: "izq" | "der";
+  tipo?: "dialogo" | "pensamiento";
+  ancho?: string;
+}
+const {
+  pose = "saludando",
+  texto,
+  lado = "izq",
+  tipo = "dialogo",
+  ancho = "w-28 sm:w-36 md:w-44",
+} = Astro.props;
+
+const src = {
+  saludando: "/eskala/eskala-saludando.png",
+  mostrando: "/eskala/eskala-mostrando.png",
+  pensando: "/eskala/eskala-pensando.png",
+  senala: "/eskala/eskala-senala.png",
+}[pose];
+
+const tail = lado === "izq" ? "tail-left" : "tail-right";
+---
+
+<div class={`flex items-end justify-center gap-2 md:gap-4 ${lado === "der" ? "flex-row-reverse" : ""}`}>
+  <img
+    src={src}
+    alt="Eskala, la embajadora de Eskala Estudio"
+    loading="lazy"
+    class={`eskala-float ${ancho} h-auto shrink-0 select-none pointer-events-none`}
+    style="filter: drop-shadow(0 14px 22px rgba(15,27,45,.22));"
+  />
+  <div class={`eskala-bubble ${tail} ${tipo === "pensamiento" ? "eskala-thought" : ""} mb-6`}>
+    <span class="eskala-name">Eskala</span>
+    <p class="text-dark text-sm md:text-base font-medium leading-snug">{texto}</p>
+  </div>
+</div>
